@@ -1,0 +1,2 @@
+public class HTable2 {
+}
