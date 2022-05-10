@@ -1,3 +1,3 @@
 public class HashFunction {
-    // for (a * k + b) % p) % m) وهنستخدم دي
+    // for (a * k + b) % p) % m)
 }
