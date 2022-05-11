@@ -4,18 +4,17 @@ public class UniversalMatrix {
     private final int M;
     private final Random random;
     private int[][] HashM;
-    private double b;
+    private int b;
 
     public UniversalMatrix(int size) {
         M = size;
-        b = 0;
         random = new Random();
         buildHashMatrix();
     }
 
     private void buildHashMatrix() {
-        b = Math.ceil(Math.log(M) / Math.log(2));
-        HashM = new int[(int) b][32];
+        b = (int) (Math.log(M) / Math.log(2));
+        HashM = new int[b][32];
         for (int i = 0; i < b; i++) {
             for (int j = 0; j < 32; j++) {
                 HashM[i][j] = random.nextInt(2);
@@ -27,7 +26,7 @@ public class UniversalMatrix {
     public int getValueOfKey(int x) {
         int result = 0;
         for (int i = 0; i < b; i++) {
-            result += multibly(HashM[i], x) << ((int) b - i - 1);
+            result += multibly(HashM[i], x) << (b - i - 1);
         }
         return result;
     }
