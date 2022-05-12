@@ -1,35 +1,39 @@
 import java.util.ArrayList;
 
 public class HTable1 {
-    int[] table;
-    UniversalMatrix universalMatrix;
-    ArrayList<Integer> hash = new ArrayList<>();
-    int M;
-    int N;
-    int numberOfTries = 1;
 
-    public HTable1(int[] table) {
-        this.table = table;
-        N = table.length;
-        M = N * N;
-        universalMatrix = new UniversalMatrix(M);
-        getFinalHashFunction();
-        System.out.println("Try number: " + numberOfTries);
-        System.out.println("The keys are: " + hash.toString());
+    private int size;
+    private TableEntry[] entries;
+
+
+    private HashFunction hashFunction;
+    public HTable1(int size ){
+       this.size=size;
+        entries=new TableEntry[size];
     }
 
-    void getFinalHashFunction() {
-        hash.add(universalMatrix.getValueOfKey(table[0]));
-        for (int i = 1; i < N; i++) {
-            if (hash.contains(universalMatrix.getValueOfKey(table[i]))) {
-                numberOfTries += 1;
-                System.out.println("Try number: " + (numberOfTries - 1) + "\nA collision happened");
-                System.out.println("Element " + table[hash.indexOf(universalMatrix.getValueOfKey(table[i]))] + " has the key " + universalMatrix.getValueOfKey(table[i]) + " which is the same key of element " + table[hash.size()]);
-                universalMatrix = new UniversalMatrix(M);
-                hash.clear();
-                i = 0;
+    public void build(Integer inputs[])
+    {
+        hashFunction=new HashFunction(size,inputs);
+        for (int input:inputs) {
+            int index=hashFunction.getFunctionValue(input);
+            if(entries[index] == null) {
+                entries[index] = new TableEntry();
             }
-            hash.add(universalMatrix.getValueOfKey(table[i]));
+
+            entries[index].setKey(input);
+        }
+        fixCollisions(inputs);
+
+
+    }
+    private void fixCollisions(Integer[] input) {
+        for (int i = 0; i < input.length; i++) {
+            if (!(entries[i] == null)) {
+                entries[i].getHashT2().build(entries[i].getChainElements().toArray(new Integer[0]));
+            }
         }
     }
+
 }
+

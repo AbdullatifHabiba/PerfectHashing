@@ -6,7 +6,7 @@ public class TableEntry {
 
     public TableEntry() {
         this.ChainElements = new ArrayList<Integer>();
-        this.hashT2 = new HTable2();
+        this.hashT2 = new HTable2(this.ChainElements.size());
     }
 
     public ArrayList<Integer> getChainElements() {
@@ -28,4 +28,5 @@ public class TableEntry {
     public void setKey(int key) {
         this.ChainElements.add(key);
     }
+
 }

@@ -9,7 +9,9 @@ public class PerfectHashing {
 //        System.out.println(universalMatrix.getValueOfKey(4));
 //        System.out.println(universalMatrix.getValueOfKey(2));
 //        System.out.println(universalMatrix.getValueOfKey(1));
-        int[] a = {100,200,300};
-        HTable1 hTable1 = new HTable1(a);
+        Integer[] a = {100,200,300};
+       // HashMatrixMethod hashMatrixMethod = new HashMatrixMethod(a);
+        HTable2 hTable2=new HTable2(3);
+        hTable2.build( a);
     }
 }
