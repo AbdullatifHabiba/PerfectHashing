@@ -28,5 +28,4 @@ public class TableEntry {
     public void setKey(int key) {
         this.ChainElements.add(key);
     }
-
 }
