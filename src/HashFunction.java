@@ -19,8 +19,9 @@ public class HashFunction {
     }
 
     public int getFunctionValue(int k){
+        int v=((a * k + b) % p) % m;
 
-        return ((a * k + b) % p) % m;
+       return (v + m) % m ;
     }
     private int getB() {
         return b = r.nextInt(p - 1);
